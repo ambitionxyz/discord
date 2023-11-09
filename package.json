@@ -4,7 +4,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:docs": "turbo dev --filter docs",
+    "build:docs": "turbo run build  --filter docs"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
@@ -17,5 +19,14 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "axios": "^1.6.1",
+    "uploadthing": "^5.7.4",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4",
+    "zustand": "^4.4.6"
+  }
 }
