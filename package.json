@@ -21,9 +21,12 @@
     "packages/*"
   ],
   "dependencies": {
+    "@clerk/nextjs": "^4.27.1",
+    "@hookform/resolvers": "^3.3.2",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
     "axios": "^1.6.1",
+    "postcss": "^8.4.31",
+    "react-hook-form": "^7.48.2",
     "uploadthing": "^5.7.4",
     "uuid": "^9.0.1",
     "zod": "^3.22.4",

@@ -1,11 +1,29 @@
-const Page = () => {
-  const profile = {};
-  const sever = false;
+import { redirect } from "next/navigation";
 
-  if (sever) {
+import { db } from "../../lib/db";
+import { initialProfile } from "../../lib/initial-profile";
+import InitialModal from "../../components/modals/initial-modal";
+
+const Page = async () => {
+  const profile = await initialProfile();
+
+  const server = await db.server.findFirst({
+    where: {
+      Members: {
+        some: {
+          profileId: profile.id,
+        },
+      },
+    },
+  });
+
+  console.log("SEVER: ", server);
+
+  if (server) {
+    return redirect(`/servers/${server.id}`);
   }
 
-  return <div>123</div>;
+  return <InitialModal />;
 };
 
 export default Page;

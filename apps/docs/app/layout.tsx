@@ -1,8 +1,12 @@
-// import "./globals.css";
+// import "ui/styles.css";
 import "@mantine/core/styles.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { MantineProvider, createTheme, ColorSchemeScript } from "@mantine/core";
+import { ClerkProvider } from "@clerk/nextjs";
+
+import { theme } from "./theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,18 +21,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
-      <head>
-        <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-        />
-      </head>
-      <body className={inter.className}>
-        <MantineProvider defaultColorScheme="dark">{children}</MantineProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <ColorSchemeScript />
+          <link rel="shortcut icon" href="/favicon.svg" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+          />
+        </head>
+        <body className={inter.className}>
+          <MantineProvider theme={theme} defaultColorScheme="dark">
+            {children}
+          </MantineProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
