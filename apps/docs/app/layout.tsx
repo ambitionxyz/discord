@@ -1,12 +1,12 @@
-// import "ui/styles.css";
+import "../styles/globals.css";
 import "@mantine/core/styles.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { MantineProvider, createTheme, ColorSchemeScript } from "@mantine/core";
-import { ClerkProvider } from "@clerk/nextjs";
 
 import { theme } from "./theme";
+import AuthProvider from "../components/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,22 +21,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <ColorSchemeScript />
-          <link rel="shortcut icon" href="/favicon.svg" />
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-          />
-        </head>
-        <body className={inter.className}>
+    <html lang="en">
+      <head>
+        <ColorSchemeScript />
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
+
+      <body className={inter.className}>
+        <AuthProvider>
           <MantineProvider theme={theme} defaultColorScheme="dark">
             {children}
           </MantineProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

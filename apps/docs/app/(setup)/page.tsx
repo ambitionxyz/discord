@@ -1,27 +1,33 @@
+"use client";
 import { redirect } from "next/navigation";
-
+import { signIn, useSession } from "next-auth/react";
 import { db } from "../../lib/db";
-import { initialProfile } from "../../lib/initial-profile";
 import InitialModal from "../../components/modals/initial-modal";
+import { data } from "autoprefixer";
 
 const Page = async () => {
-  const profile = await initialProfile();
+  const { data: session } = useSession();
 
-  const server = await db.server.findFirst({
-    where: {
-      Members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-  });
-
-  console.log("SEVER: ", server);
-
-  if (server) {
-    return redirect(`/servers/${server.id}`);
+  if (!session) {
+    return redirect(`/login`);
   }
+  console.log(session);
+
+  // const server = await db.server.findFirst({
+  //   where: {
+  //     Members: {
+  //       some: {
+  //         profileId: profile.id,
+  //       },
+  //     },
+  //   },
+  // });
+
+  // console.log("SEVER: ", server);
+
+  // if (server) {
+  //   return redirect(`/servers/${server.id}`);
+  // }
 
   return <InitialModal />;
 };
