@@ -1,5 +1,13 @@
-const Page = () => {
-  return <div className=" bg-red-400"> LOGIN</div>;
-};
+"use client";
 
-export default Page;
+import { Button } from "@mantine/core";
+import { cn } from "../../../../lib/utils";
+
+export default function Page() {
+  return (
+    <>
+      <p className="text-red-400">aslasaos</p>
+      <Button className="hidden">Settings</Button>
+    </>
+  );
+}

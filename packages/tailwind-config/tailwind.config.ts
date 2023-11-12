@@ -2,6 +2,9 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  corePlugins: {
+    preflight:false
+  },
   theme: {
     extend: {
       backgroundImage: {
@@ -11,5 +14,6 @@ const config: Config = {
     },
   },
   plugins: [],
+ 
 };
 export default config;

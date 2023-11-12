@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^7.2.1",
+    "@mantine/hooks": "^7.2.1",
     "database": "*",
     "next": "^13.4.19",
     "react": "^18.2.0",

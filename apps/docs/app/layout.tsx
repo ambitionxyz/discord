@@ -1,5 +1,5 @@
-import "../styles/globals.css";
 import "@mantine/core/styles.css";
+import "../styles/globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -7,8 +7,9 @@ import { MantineProvider, createTheme, ColorSchemeScript } from "@mantine/core";
 
 import { theme } from "./theme";
 import AuthProvider from "../components/providers/AuthProvider";
+import { cn } from "../lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -31,7 +32,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={inter.className}>
+      <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
         <AuthProvider>
           <MantineProvider theme={theme} defaultColorScheme="dark">
             {children}
