@@ -1,33 +1,22 @@
 "use client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { db } from "../../lib/db";
 import InitialModal from "../../components/modals/initial-modal";
-import { data } from "autoprefixer";
+import { useEffect } from "react";
 
-const Page = async () => {
-  const { data: session } = useSession();
+const Page = () => {
+  const { data: session, status } = useSession();
 
-  if (!session) {
-    return redirect(`/login`);
-  }
-  console.log(session);
+  const router = useRouter();
 
-  // const server = await db.server.findFirst({
-  //   where: {
-  //     Members: {
-  //       some: {
-  //         profileId: profile.id,
-  //       },
-  //     },
-  //   },
-  // });
-
-  // console.log("SEVER: ", server);
-
-  // if (server) {
-  //   return redirect(`/servers/${server.id}`);
-  // }
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      console.log(status);
+      void signIn();
+    } else if (status === "authenticated") {
+      void router.push("/");
+    }
+  }, [status]);
 
   return <InitialModal />;
 };

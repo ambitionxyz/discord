@@ -9,12 +9,12 @@ export const options: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: {
-          label: "email",
+          label: "Email",
           type: "email",
           placeholder: "Enter your email address",
         },
         password: {
-          label: "password",
+          label: "Password",
           type: "password",
           placeholder: "your-awesome-password",
         },
@@ -40,6 +40,10 @@ export const options: NextAuthOptions = {
 
         return null;
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
 };
