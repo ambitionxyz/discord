@@ -13,7 +13,6 @@ model Profile {
   name     String
   imageUrl String @db.Text
   email    String @unique
-  password String
 
   servers  Server[]
   members  Member[]
