@@ -1,24 +1,13 @@
 "use client";
+import * as z from "zod";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
 import { useDisclosure } from "@mantine/hooks";
-import {
-  Dialog,
-  Group,
-  Button,
-  TextInput,
-  Text,
-  Grid,
-  Input,
-  Alert,
-  Box,
-  Notification,
-} from "@mantine/core";
+
+import classes from "./Initial-modal.module.css";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -49,7 +38,11 @@ const InitialModal = () => {
 
   if (!isMounted) return null;
 
-  return <></>;
+  return (
+    <>
+      <div className={classes.demo}> 1123</div>
+    </>
+  );
 };
 
 export default InitialModal;

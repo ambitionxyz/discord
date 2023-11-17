@@ -1,8 +1,10 @@
 "use client";
+
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import InitialModal from "../../components/modals/initial-modal";
-import { useEffect } from "react";
+
+import InitialModal from "../../../components/modals/initial-modal";
 
 const Page = () => {
   const { data: session, status } = useSession();
