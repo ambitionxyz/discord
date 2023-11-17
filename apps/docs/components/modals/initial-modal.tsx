@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useDisclosure } from "@mantine/hooks";
 
 import classes from "./Initial-modal.module.css";
+import { UploadButton } from "../../lib/uploadthing";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -41,6 +42,20 @@ const InitialModal = () => {
   return (
     <>
       <div className={classes.demo}> 1123</div>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <UploadButton
+          endpoint="serverImage"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            console.log("Files: ", res);
+            alert("Upload Completed");
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
+      </main>
     </>
   );
 };
