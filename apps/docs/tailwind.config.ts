@@ -6,7 +6,9 @@ const config: Pick<Config, "presets"> = {
   presets: [sharedConfig],
 };
 
-export default withUt({
-  config,
-  content: ["./src/**/*.{ts,tsx,mdx}"],
-});
+export default config;
+
+// export default withUt({
+//   config,
+//   content: ["./src/**/*.{ts,tsx,mdx}"],
+// });

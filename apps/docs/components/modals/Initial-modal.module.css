@@ -1,4 +1,17 @@
-.demo {
-  display: hidden;
-  color: red;
+.modal {
+  .header {
+    display: flex;
+    justify-content: center;
+
+    .title {
+      font-weight: 800;
+      font-size: 30px;
+    }
+  }
+
+  .body {
+    .description {
+      text-align: center;
+    }
+  }
 }

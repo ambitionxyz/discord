@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@mantine/core": "^7.2.1",
+    "@mantine/form": "^7.2.2",
     "@mantine/hooks": "^7.2.1",
     "database": "*",
+    "lucide-react": "^0.292.0",
     "next": "^13.4.19",
     "next-intl": "^3.0.3",
     "react": "^18.2.0",

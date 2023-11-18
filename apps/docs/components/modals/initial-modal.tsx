@@ -1,14 +1,16 @@
 "use client";
+
 import * as z from "zod";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useDisclosure } from "@mantine/hooks";
+import { Controller, useForm } from "react-hook-form";
+import { Button, Modal, Text, TextInput } from "@mantine/core";
 
-import classes from "./Initial-modal.module.css";
 import { UploadButton } from "../../lib/uploadthing";
+import { FileUpload } from "../file-upload";
+import classes from "./Initial-modal.module.css";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -21,7 +23,6 @@ const formSchema = z.object({
 
 const InitialModal = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [opened, { toggle, close }] = useDisclosure(false);
 
   const router = useRouter();
 
@@ -37,26 +38,81 @@ const InitialModal = () => {
     },
   });
 
+  const isLoading = form.formState.isSubmitting;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await axios.post("/api/servers", values);
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!isMounted) return null;
 
   return (
-    <>
-      <div className={classes.demo}> 1123</div>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <UploadButton
-          endpoint="serverImage"
-          onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res);
-            alert("Upload Completed");
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            alert(`ERROR! ${error.message}`);
-          }}
-        />
-      </main>
-    </>
+    <Modal.Root
+      opened={true}
+      onClose={() => {}}
+      centered
+      className={classes.modal}
+      size={600}
+    >
+      <Modal.Overlay />
+      <Modal.Content>
+        <Modal.Header className={classes.header}>
+          <Modal.Title className={classes.title}>
+            Customize your service
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={classes.body}>
+          <Text className={classes.description}>
+            Give your server a persion with a name and an image. You can always
+            change it later
+          </Text>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="space-y-10 px-6">
+              <div className="flex items-center justify-center text-center">
+                <Controller
+                  name="imageUrl"
+                  key="imageUrl"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FileUpload
+                      endpoint="serverImage"
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+              </div>
+              <Controller
+                name="name"
+                key="name"
+                control={form.control}
+                render={({ field }) => (
+                  <TextInput
+                    key={field.name}
+                    {...field}
+                    label="Sever name"
+                    placeholder="Enter sever name"
+                    required
+                  />
+                )}
+              />
+            </div>
+            <div className="flex justify-end">
+              <Button type="submit" disabled={isLoading} className="mr-6">
+                Create
+              </Button>
+            </div>
+          </form>
+        </Modal.Body>
+      </Modal.Content>
+    </Modal.Root>
   );
 };
 
