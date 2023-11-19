@@ -11,7 +11,7 @@ const LogoutButton = () => {
         signOut();
       }}
     >
-      <LogOut size={48} strokeWidth={2.25} absoluteStrokeWidth />
+      <LogOut size={30} strokeWidth={2.25} absoluteStrokeWidth />
     </UnstyledButton>
   );
 };

@@ -6,6 +6,7 @@ import { currentProfile } from "../../lib/current-profile";
 import { NavigationAction } from "./navigation-action";
 import { NavigationItem } from "./navigation-item";
 import LogoutButton from "../logout-button";
+import ModeToggle from "../mode-toggle";
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile();
@@ -40,6 +41,7 @@ export const NavigationSidebar = async () => {
         ))}
       </ScrollArea>
       <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
+        <ModeToggle />
         <Tooltip
           label={profile.email}
           position="right"
