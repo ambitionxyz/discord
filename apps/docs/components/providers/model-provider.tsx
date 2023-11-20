@@ -1,4 +1,4 @@
-import { CreateServerModal } from "../modals/create-server-modal";
+import CreateServerModal from "../modals/create-server-modal";
 
 export const ModalProvider = () => {
   return (

@@ -46,6 +46,7 @@ export const NavigationSidebar = async () => {
           label={profile.email}
           position="right"
           transitionProps={{ duration: 0 }}
+          withArrow
         >
           <UnstyledButton className="h-[48px] w-[48px]">
             <Avatar size={48} src={profile.imageUrl} />

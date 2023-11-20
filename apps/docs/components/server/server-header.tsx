@@ -1,7 +1,7 @@
 "use client";
 
 import { NavLink } from "@mantine/core";
-import { UserPlus, Users } from "lucide-react";
+import { LogOut, PlusCircle, Trash, UserPlus, Users } from "lucide-react";
 
 import { MemberRole } from ".prisma/client";
 import { ServerWithMembersWithProfiles } from "../../types";
@@ -30,6 +30,7 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         <NavLink
           onClick={() => onOpen("invite", { server: server })}
           label="Invite People"
+          className="!text-indigo-600"
           leftSection={<UserPlus className="h-4 w-4 ml-auto" />}
         />
         {isAdmin && (
@@ -37,6 +38,29 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
             onClick={() => onOpen("invite", { server: server })}
             label="Manage Members"
             leftSection={<Users className="h-4 w-4 ml-auto" />}
+          />
+        )}
+        {isModerator && (
+          <NavLink
+            onClick={() => onOpen("invite", { server: server })}
+            label="Create Channel"
+            leftSection={<PlusCircle className="h-4 w-4 ml-auto" />}
+          />
+        )}
+        {isAdmin && (
+          <NavLink
+            className="!text-rose-500 "
+            onClick={() => onOpen("invite", { server: server })}
+            label="Delete Server"
+            leftSection={<Trash className="h-4 w-4 ml-auto" />}
+          />
+        )}
+        {isAdmin && (
+          <NavLink
+            className="!text-rose-500 "
+            onClick={() => onOpen("invite", { server: server })}
+            label="Leave Server"
+            leftSection={<LogOut className="h-4 w-4 ml-auto" />}
           />
         )}
       </NavLink>
