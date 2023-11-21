@@ -1,20 +1,18 @@
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { useHotkeys, useLocalStorage } from "@mantine/hooks";
-// export const changeThem = (value?: ColorScheme)
+"use client";
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [colorScheme, setColorScheme] = useLocalStorage<any>({
-    key: "mantine-color-scheme",
-    defaultValue: "dark",
-  });
-  const toggleColorScheme = (value?: any) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+import { createTheme, MantineProvider } from "@mantine/core";
+import React from "react";
+import "@mantine/core/styles.css";
 
-  useHotkeys([["mod+J", () => toggleColorScheme()]]);
-
+interface Props {
+  children: React.ReactNode;
+}
+const ThemeProvider: React.FC<Props> = ({ children }) => {
   return (
-    <ColorSchemeScript forceColorScheme={colorScheme}>
-      <MantineProvider defaultColorScheme="dark">{children}</MantineProvider>
-    </ColorSchemeScript>
+    <MantineProvider forceColorScheme="light" defaultColorScheme="dark">
+      {children}
+    </MantineProvider>
   );
 };
+
+export default ThemeProvider;

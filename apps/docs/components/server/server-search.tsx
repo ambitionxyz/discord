@@ -1,9 +1,8 @@
 "use client";
 
-import { Modal, TextInput } from "@mantine/core";
-import { Search } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
+import { Modal, TextInput } from "@mantine/core";
 import { Controller, useForm } from "react-hook-form";
 
 interface ServerSearchProps {
@@ -22,10 +21,6 @@ interface ServerSearchProps {
 
 export const ServerSearch = ({ data }: ServerSearchProps) => {
   const [open, setOpen] = useState(false);
-
-  const router = useRouter();
-
-  const params = useParams();
 
   const form = useForm();
 
@@ -49,7 +44,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className=" bg-transparent group rounded-md flex items-center border-none gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition "
+        className=" bg-transparent group rounded-md flex items-center border-none gap-x-2 w-full h-8  transition "
       >
         <Search className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
         <p className="font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition">

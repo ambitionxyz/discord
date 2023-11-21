@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { UnstyledButton, Tooltip, Title, rem } from "@mantine/core";
+import { UnstyledButton, Tooltip } from "@mantine/core";
 
 import { useModal } from "../../hooks/use-modal-store";
 
@@ -22,7 +22,7 @@ export const NavigationAction = () => {
     >
       <UnstyledButton
         onClick={() => {
-          console.log(onOpen("createServer"));
+          onOpen("createServer");
         }}
         className="group flex items-center"
       >

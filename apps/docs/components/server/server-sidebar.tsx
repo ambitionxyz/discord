@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
-
 import { ChannelType, MemberRole } from "@prisma/client";
+import { ScrollArea } from "@mantine/core";
+import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+
 import { db } from "../../lib/db";
 import { currentProfile } from "../../lib/current-profile";
 import ServerHeader from "./server-header";
-import { ScrollArea } from "@mantine/core";
-import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 import { ServerSearch } from "./server-search";
 
 interface ServerSideBarProps {
@@ -123,6 +123,7 @@ export const ServerSidebar = async ({ serverId }: ServerSideBarProps) => {
             ]}
           />
         </div>
+        <div className="block h-[1px] bg-zinc-200 dark:bg-zinc-700 rounded-md my-2 w-full" />
       </ScrollArea>
     </div>
   );
