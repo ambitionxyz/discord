@@ -8,6 +8,7 @@ import { cn } from "../lib/utils";
 import { theme } from "./theme";
 import AuthProvider from "../components/providers/AuthProvider";
 import { ModalProvider } from "../components/providers/model-provider";
+import { SocketProvider } from "../components/providers/socket-provider";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,10 @@ export default function RootLayout({
       <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
         <AuthProvider>
           <MantineProvider theme={theme} defaultColorScheme="dark">
-            <ModalProvider />
-            {children}
+            <SocketProvider>
+              <ModalProvider />
+              {children}
+            </SocketProvider>
           </MantineProvider>
         </AuthProvider>
       </body>
