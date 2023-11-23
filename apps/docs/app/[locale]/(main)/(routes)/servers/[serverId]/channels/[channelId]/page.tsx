@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { db } from "../../../../../../../../lib/db";
 import { currentProfile } from "../../../../../../../../lib/current-profile";
 import ChatHeader from "../../../../../../../../components/chat/chat-header";
+import ChatMessages from "../../../../../../../../components/chat/chat-messages";
+import ChatInput from "../../../../../../../../components/chat/chat-input";
 
 interface ChannelIdPageProps {
   params: {
@@ -44,6 +46,13 @@ const Page = async ({ params }: ChannelIdPageProps) => {
         name={channel.name}
         serverId={channel.serverId}
         type="channel"
+      />
+      <ChatMessages />
+      <ChatInput
+        name={channel.name}
+        type="channel"
+        apiUrl="/api/socket/messages"
+        query={{ channelId: channel.id, serverId: channel.serverId }}
       />
     </div>
   );

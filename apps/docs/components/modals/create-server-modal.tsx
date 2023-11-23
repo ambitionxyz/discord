@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Modal, Text, TextInput } from "@mantine/core";
-import { FileUpload } from "../file-upload";
+import { FileUpload } from "../others/file-upload";
 import classes from "./Initial-modal.module.css";
 import { useModal } from "../../hooks/use-modal-store";
 

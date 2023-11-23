@@ -9,7 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Button, Modal, Text, TextInput } from "@mantine/core";
 
 import { UploadButton } from "../../lib/uploadthing";
-import { FileUpload } from "../file-upload";
+import { FileUpload } from "../others/file-upload";
 import classes from "./Initial-modal.module.css";
 
 const formSchema = z.object({

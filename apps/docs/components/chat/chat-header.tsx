@@ -1,7 +1,7 @@
 import { Hash } from "lucide-react";
 
 import { cn } from "../../lib/utils";
-import SocketIndicator from "../socket-indicator";
+import SocketIndicator from "../others/socket-indicator";
 
 import classes from "./chat-header.module.css";
 
