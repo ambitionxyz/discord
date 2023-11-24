@@ -16,7 +16,6 @@ interface ChannelIdPageProps {
 
 const Page = async ({ params }: ChannelIdPageProps) => {
   const { serverId, channelId } = params;
-
   const profile = await currentProfile();
 
   if (!profile) {
@@ -47,7 +46,12 @@ const Page = async ({ params }: ChannelIdPageProps) => {
         serverId={channel.serverId}
         type="channel"
       />
-      <ChatMessages />
+      <ChatMessages
+        member={member}
+        paramKey="channelId"
+        paramValue={channel.id}
+        chatId={channel.id}
+      />
       <ChatInput
         name={channel.name}
         type="channel"

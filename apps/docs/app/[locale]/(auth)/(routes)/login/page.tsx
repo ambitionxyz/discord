@@ -11,17 +11,11 @@ export default function Page() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      console.log("No JWT");
-      console.log(status);
-      void signIn("okta");
+      void signIn();
     } else if (status === "authenticated") {
       void router.push("/");
     }
   }, [status]);
 
-  return (
-    <button onClick={() => signIn()} className="text-green-600 ml-auto">
-      Sign In
-    </button>
-  );
+  return <></>;
 }

@@ -9,6 +9,7 @@ import { theme } from "./theme";
 import AuthProvider from "../components/providers/AuthProvider";
 import { ModalProvider } from "../components/providers/model-provider";
 import { SocketProvider } from "../components/providers/socket-provider";
+import { QueryProvider } from "../components/providers/query-provider";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
           <MantineProvider theme={theme} defaultColorScheme="dark">
             <SocketProvider>
               <ModalProvider />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </SocketProvider>
           </MantineProvider>
         </AuthProvider>

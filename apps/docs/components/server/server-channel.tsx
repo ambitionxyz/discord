@@ -21,7 +21,6 @@ const iconMap = {
 };
 
 const ServerChannel = ({ key, channel, role, server }: ServerChannelProps) => {
-  console.log({ server });
 
   const params = useParams();
   const router = useRouter();

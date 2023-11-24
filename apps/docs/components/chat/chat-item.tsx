@@ -2,16 +2,32 @@
 
 import { Avatar, Tooltip } from "@mantine/core";
 import { ShieldAlert } from "lucide-react";
-import { cn } from "../../lib/utils";
 
-const ChatItem = () => {
+import { cn } from "../../lib/utils";
+import { Member, Profile } from "database";
+
+interface ChatItemProps {
+  id: string;
+  content: string;
+  member: Member & {
+    profile: Profile;
+  };
+  timestamp: string;
+}
+
+const ChatItem = ({
+  id,
+  content,
+  member,
+  timestamp,
+}: ChatItemProps) => {
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div
         onClick={undefined}
         className="cursor-pointer hover:drop-shadow-md transition"
       >
-        <Avatar />
+        <Avatar src={member.profile.imageUrl} />
       </div>
       <div className="flex flex-col w-full ml-2">
         <div className="flex items-center gap-x-2 ">
@@ -20,14 +36,14 @@ const ChatItem = () => {
               onClick={undefined}
               className="font-semibold text-sm hover:underline cursor-pointer"
             >
-              Luận HQ
+              {}
             </p>
             <Tooltip label="Admin">
               <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
             </Tooltip>
           </div>
           <span className="text-xs text-zinc-500 dark:text-zinc-400">
-            2h:50p
+            {timestamp}
           </span>
         </div>
         <p
@@ -36,12 +52,7 @@ const ChatItem = () => {
             // true && "italic text-zinc-500 dark:text-zinc-400 text-xs mt-1"
           )}
         >
-          aalaosasasas
-          {/* {true && (
-            <span className="text-[10px] mx-2 text-zinc-500 dark:text-zinc-400">
-              (edited)
-            </span>
-          )} */}
+          {content}
         </p>
       </div>
     </div>

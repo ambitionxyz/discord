@@ -1,15 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
-import { signIn } from "next-auth/react";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 
 import { db } from "./db";
 import { options } from "../app/api/auth/[...nextauth]/options";
 
-export const initialProfile = async () => {
-  const session = await getServerSession(options);
-
+export const initialProfile = async (session: Session) => {
   if (!session?.user) {
-    return signIn();
+    return;
   }
 
   const profile = await db.profile.findUnique({
