@@ -19,7 +19,7 @@ const Page = async ({ params }: ChannelIdPageProps) => {
   const profile = await currentProfile();
 
   if (!profile) {
-    return signIn();
+    return redirect("/login");
   }
 
   const channel = await db.channel.findUnique({
@@ -47,6 +47,7 @@ const Page = async ({ params }: ChannelIdPageProps) => {
         type="channel"
       />
       <ChatMessages
+        name={channel.name}
         member={member}
         paramKey="channelId"
         paramValue={channel.id}

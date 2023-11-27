@@ -3,7 +3,7 @@ import { currentProfile } from "../../../lib/current-profile";
 import { Message } from "database";
 import { db } from "../../../lib/db";
 
-const MESSAGES_BATCH = 10;
+const MESSAGES_BATCH = 15;
 export async function GET(req: Request) {
   try {
     const profile = await currentProfile();

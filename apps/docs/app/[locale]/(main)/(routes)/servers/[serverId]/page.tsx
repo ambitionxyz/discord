@@ -1,13 +1,48 @@
 import { Button } from "@mantine/core";
+import { redirect } from "next/navigation";
 
-const ServerIdPage = () => {
-  return (
-    <div>
-      <Button className="bg-red-500  text-blue-400">
-        demo test css
-      </Button>
-    </div>
-  );
+import { db } from "../../../../../../lib/db";
+import { currentProfile } from "../../../../../../lib/current-profile";
+
+interface ServerIdPageProps {
+  params: {
+    serverId: string;
+  };
+}
+
+const ServerIdPage = async ({ params }: ServerIdPageProps) => {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    return redirect("/login");
+  }
+  const server = await db.server.findUnique({
+    where: {
+      id: params.serverId,
+      Members: {
+        some: {
+          profileId: profile.id,
+        },
+      },
+    },
+    include: {
+      Channels: {
+        where: {
+          name: "general",
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+    },
+  });
+
+  const initialChannel = server?.Channels[0];
+  if (initialChannel?.name !== "general") {
+    return null;
+  }
+
+  return redirect(`/servers/${params.serverId}/channels/${initialChannel?.id}`);
 };
 
 export default ServerIdPage;

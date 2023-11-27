@@ -15,12 +15,7 @@ interface ChatItemProps {
   timestamp: string;
 }
 
-const ChatItem = ({
-  id,
-  content,
-  member,
-  timestamp,
-}: ChatItemProps) => {
+const ChatItem = ({ id, content, member, timestamp }: ChatItemProps) => {
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div
@@ -35,11 +30,9 @@ const ChatItem = ({
             <p
               onClick={undefined}
               className="font-semibold text-sm hover:underline cursor-pointer"
-            >
-              {}
-            </p>
+            ></p>
             <Tooltip label="Admin">
-              <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
+              <ShieldAlert className="h-4 w-4  text-rose-500" />
             </Tooltip>
           </div>
           <span className="text-xs text-zinc-500 dark:text-zinc-400">
